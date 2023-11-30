@@ -16,4 +16,10 @@ app.get("/about", handlers.about);
 app.use(handlers.notFound);
 app.use(handlers.serverError);
 
-app.listen(port, () => console.log(`Serving on ${port}`));
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`Serving on ${port}`);
+  });
+} else {
+  module.exports = app;
+}
